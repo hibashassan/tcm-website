@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Project — The Collective Mind</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .pback{position:fixed;top:1.3rem;left:1.3rem;z-index:30;display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.22);color:#fff;padding:.6rem 1.1rem;border-radius:100px;font-weight:600;font-size:.9rem}
+  .pback:hover{background:rgba(255,255,255,.2)}
+  .ph{display:flex;align-items:center;justify-content:center;background:linear-gradient(120deg,#181225,#241634);color:rgba(255,255,255,.5);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;border-radius:16px;min-height:240px}
+  .pmeta{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.3rem}
+  .pmeta span{font-size:.78rem;font-weight:600;letter-spacing:.06em;padding:.4rem .9rem;border-radius:100px;border:1px solid rgba(255,255,255,.25);color:#fff}
+  .pnext{border-top:1px solid var(--line);padding:3rem 0}
+  .pnext a{font-family:var(--disp);font-weight:700;font-size:clamp(1.3rem,3vw,2rem)}
+  .pnext a:hover{color:var(--violet-deep,#6b46c1)}
+
+  /* TEMPLATE 1 — CINEMATIC: full-bleed hero, centred story, wide gallery */
+  .t-cine .phero{position:relative;height:88svh;min-height:520px;overflow:hidden;display:flex;align-items:flex-end;color:#fff}
+  .t-cine .phero img,.t-cine .phero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .t-cine .phero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,5,16,.2) 30%,rgba(8,5,16,.86))}
+  .t-cine .phero .wrap{position:relative;z-index:2;padding-bottom:3.5rem}
+  .t-cine .phero h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.4rem,7vw,5.5rem);line-height:1;letter-spacing:-.02em;max-width:16ch}
+  .t-cine .story{max-width:60ch;margin:0 auto;padding:clamp(3rem,7vw,6rem) 0;font-size:1.25rem;line-height:1.7;color:var(--ink)}
+  .t-cine .gal{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;padding-bottom:5rem}
+  .t-cine .gal .ph:nth-child(3n){grid-column:1/-1}
+
+  /* TEMPLATE 2 — EDITORIAL / CASE STUDY: split hero, problem/approach/result, metrics */
+  .t-edit .phero{padding:6rem 0 0}
+  .t-edit .phero .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+  @media(max-width:820px){.t-edit .phero .wrap{grid-template-columns:1fr}}
+  .t-edit .phero h1{font-family:var(--disp);font-weight:800;font-size:clamp(2rem,5vw,3.6rem);line-height:1.04;letter-spacing:-.02em}
+  .t-edit .phero .lead{color:var(--muted);font-size:1.15rem;margin-top:1rem;max-width:42ch}
+  .t-edit .block{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;padding:clamp(2.5rem,5vw,4.5rem) 0;border-top:1px solid var(--line)}
+  @media(max-width:820px){.t-edit .block{grid-template-columns:1fr}}
+  .t-edit .block:nth-child(even) .txt{order:2}
+  .t-edit .block h3{font-family:var(--disp);font-weight:700;font-size:1.6rem;margin-bottom:.6rem}
+  .t-edit .block p{color:var(--muted);font-size:1.05rem;line-height:1.65}
+  .t-edit .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;padding:3rem 0}
+  @media(max-width:600px){.t-edit .metrics{grid-template-columns:1fr}}
+  .t-edit .metric{border:1px solid var(--line);border-radius:18px;padding:1.8rem}
+  .t-edit .metric b{font-family:var(--disp);font-size:2.6rem;font-weight:800;display:block;line-height:1}
+  .t-edit .metric span{color:var(--muted);font-size:.92rem}
+
+  /* TEMPLATE 3 — GALLERY-FIRST: bold title, immersive image grid, minimal copy */
+  .t-gal .ghead{padding:7rem 0 2.5rem}
+  .t-gal .ghead h1{font-family:var(--disp);font-weight:800;font-size:clamp(2.4rem,7vw,5rem);line-height:1;letter-spacing:-.02em;max-width:14ch}
+  .t-gal .ghead p{color:var(--muted);font-size:1.15rem;max-width:48ch;margin-top:1.1rem}
+  .t-gal .grid{columns:3;column-gap:1rem;padding-bottom:5rem}
+  @media(max-width:900px){.t-gal .grid{columns:2}}
+  @media(max-width:560px){.t-gal .grid{columns:1}}
+  .t-gal .grid .ph{break-inside:avoid;margin-bottom:1rem;min-height:0}
+  .t-gal .grid .ph.tall{aspect-ratio:3/4}
+  .t-gal .grid .ph.wide{aspect-ratio:4/3}
+</style>
+</head>
+<body>
+<a class="pback" href="index.html#work">← All work</a>
+<main id="proj"></main>
+<footer class="contact" style="padding:0">
+  <div class="wrap pnext">
+    <p class="eyebrow" style="color:var(--mint)">Next</p>
+    <a id="nextLink" href="index.html#work">See more work →</a>
+  </div>
+</footer>
+
+<script src="gradient.js"></script>
+<script>
+(function(){
+  // media helper
+  function media(src,cls){return /\.(mp4|webm|mov)$/i.test(src)?'<video src="'+src+'" autoplay muted loop playsinline class="'+(cls||'')+'"></video>':'<img src="'+src+'" alt="" class="'+(cls||'')+'"/>';}
+  function ph(label,cls){return '<div class="ph '+(cls||'')+'">'+(label||'Image coming soon')+'</div>';}
+
+  // PROJECT DATA — hero media is real; gallery/sections use placeholders until you send images.
+  // tpl: 'cine' | 'edit' | 'gal'
+  var P={
+    creativedubai:{t:'Creative Dubai',s:'Film · Campaign',m:'work/creative-dubai-1.mp4',tpl:'cine',d:"An art-direction film for Creative Dubai that asks what makes a masterpiece, layering classical painting and sculpture with motion and Arabic typography.",gallery:3},
+    asus:{t:'ASUS',s:'Tech · Advertising',m:'work/asus.mp4',tpl:'cine',d:"A product launch film for ASUS: clean hero shots, reflections and motion built to make the hardware the story.",gallery:3},
+    gulfood:{t:'Gulfood',s:'Event · Campaign',m:'work/gulfood.mp4',tpl:'cine',d:"Event film and content for Gulfood, the region's largest food and beverage trade show, capturing the scale and energy of the floor.",gallery:4},
+    swamp:{t:'Swamp of Heroes',s:'Motion · 3D · Game',m:'work/swamp.mp4',tpl:'cine',d:"A 3D environment and cinematic lighting study for a game world, from set dressing to mood and atmosphere.",gallery:4},
+    yallaplay:{t:'YallaPlay',s:'App · Gaming',m:'work/yallaplay.mp4',tpl:'cine',d:"Launch motion and identity for YallaPlay's Arneeb Masters, built to feel competitive and premium.",gallery:3},
+    launch:{t:'Product launch',s:'Branding · Identity',m:'work/gs_launch.jpg',tpl:'edit',d:"Brand identity and packaging for a vitamin product launch, from logo and system through to on-pack and launch comms."},
+    hospitality:{t:'Hospitality',s:'Brand · Art direction',m:'work/gs_hospitality.jpg',tpl:'edit',d:"Brand identity and art direction for a hospitality concept, from logo to uniforms and social."},
+    fitness:{t:'Fitness',s:'Editorial · Brand',m:'work/gs_fitness.jpg',tpl:'edit',d:"Identity and wayfinding for GOAL, an indoor football arena: signage and environmental branding."},
+    tourism:{t:'Destinations',s:'Tourism · Campaign',m:'work/gs_tourism.jpg',tpl:'edit',d:"The World's Coolest Winter tourism campaign for the UAE: bilingual art direction across digital and out-of-home."},
+    sephora:{t:'Sephora',s:'Retail · Social',m:'work/gs_sephora.jpg',tpl:'edit',d:"A social-first content system for Sephora: one consistent visual language across formats and campaigns."},
+    alnaser:{t:'Alnaser',s:'AI Production · 3D',m:'work/alnaser1.jpg',tpl:'gal',d:"Pixar-style AI characters for a sports property, designed, generated and art-directed as one consistent cast.",gallery:6},
+    cuisine:{t:'Cuisine',s:'Food · Photography',m:'work/gs_cuisine.jpg',tpl:'gal',d:"AI-assisted food photography: appetising hero imagery generated and finished without a studio shoot.",gallery:6},
+    restaurant:{t:'Restaurant',s:'Food · Social',m:'work/gs_restaurant.jpg',tpl:'gal',d:"AI food photography and social content for a restaurant: a full menu shot without a single plate leaving the kitchen.",gallery:6},
+    holofair:{t:'Holofair',s:'UI/UX · Web & App',m:'work/holofair.gif',tpl:'gal',d:"UI/UX for Holofair, an XR collaboration platform: chat, profiles and settings designed as a system.",gallery:6},
+    analytics:{t:'Integrated tech & AI',s:'AI solutions',m:'work/analytics.gif',tpl:'gal',d:"A live social-analytics dashboard: the integrated tools we build so a lean team can track brand performance across channels and AI search.",gallery:4},
+    identity:{t:'Identity in motion',s:'Branding',m:'work/identity-motion.gif',tpl:'gal',d:"An animated brand identity: the logo and system brought to life for screens and social.",gallery:6}
+  };
+  var KEYS=Object.keys(P);
+
+  function cine(p){
+    var g='';for(var i=0;i<(p.gallery||3);i++) g+=ph('Image '+(i+1));
+    return '<div class="t-cine">'+
+      '<header class="phero">'+media(p.m)+'<div class="wrap"><p class="eyebrow" style="color:var(--mint)">'+p.s+'</p><h1>'+p.t+'</h1></div></header>'+
+      '<div class="wrap"><div class="story">'+p.d+'</div></div>'+
+      '<div class="wrap"><div class="gal">'+g+'</div></div></div>';
+  }
+  function edit(p){
+    return '<div class="t-edit">'+
+      '<header class="phero"><div class="wrap"><div class="txt"><p class="eyebrow">'+p.s+'</p><h1>'+p.t+'</h1><p class="lead">'+p.d+'</p><div class="pmeta" style="margin-top:1.4rem"><span style="border-color:var(--line);color:var(--ink)">Branding</span><span style="border-color:var(--line);color:var(--ink)">Art direction</span></div></div>'+media(p.m,'phero-img')+'</div></header>'+
+      '<div class="wrap"><div class="block"><div class="txt"><h3>The brief</h3><p>[ Add the challenge here. What did the client need, and why did it matter? ]</p></div>'+ph('Image — brief')+'</div>'+
+      '<div class="block">'+ph('Image — approach')+'<div class="txt"><h3>What we did</h3><p>[ Add the approach. The thinking, the craft, the system you built. ]</p></div></div>'+
+      '<div class="block"><div class="txt"><h3>The result</h3><p>[ Add the outcome. What changed, what shipped, what it achieved. ]</p></div>'+ph('Image — result')+'</div>'+
+      '<div class="metrics"><div class="metric"><b>—</b><span>[ metric ]</span></div><div class="metric"><b>—</b><span>[ metric ]</span></div><div class="metric"><b>—</b><span>[ metric ]</span></div></div></div></div>';
+  }
+  function gal(p){
+    var cls=['tall','wide','tall','wide','wide','tall'],g='';
+    for(var i=0;i<(p.gallery||6);i++) g+=ph('Image '+(i+1),cls[i%cls.length]);
+    return '<div class="t-gal"><div class="wrap"><div class="ghead"><p class="eyebrow">'+p.s+'</p><h1>'+p.t+'</h1><p>'+p.d+'</p></div><div class="grid">'+g+'</div></div></div>';
+  }
+
+  var id=new URLSearchParams(location.search).get('id')||'creativedubai';
+  var p=P[id]||P.creativedubai;
+  document.title=p.t+' — The Collective Mind';
+  var render={cine:cine,edit:edit,gal:gal}[p.tpl]||cine;
+  document.getElementById('proj').innerHTML=render(p);
+
+  // next project link
+  var ni=(KEYS.indexOf(id)+1)%KEYS.length, np=P[KEYS[ni]];
+  var nl=document.getElementById('nextLink'); nl.textContent=np.t+' →'; nl.href='project.html?id='+KEYS[ni];
+})();
+</script>
+</body>
+</html>

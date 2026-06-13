@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Collective Mind — a senior creative + AI collective in the UAE</title>
+<meta name="description" content="A senior-only, embedded creative collective in the UAE. Branding, marketing, web & app, AI production, and custom AI for lean brands and agencies." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  /* hero: design montage behind the gradient (washed) */
+  .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-3;filter:brightness(.6) saturate(1.1) contrast(1.04)}
+  .hero canvas{opacity:.82}
+  /* what we do — 6 pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+  @media(max-width:820px){.pillars{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.pillars{grid-template-columns:1fr}}
+  .pillar{padding:1.8rem 1.6rem 2.1rem;border-bottom:1px solid var(--line);border-right:1px solid var(--line);transition:background .3s}
+  .pillar:hover{background:var(--paper)}
+  .pillar .n{font-family:var(--disp);font-size:.85rem;color:var(--muted);font-weight:600}
+  .pillar h3{font-family:var(--disp);font-size:1.45rem;font-weight:700;margin:.55rem 0 .5rem;line-height:1.1}
+  .pillar p{color:var(--muted);font-size:.96rem}
+  /* AI section (dark) */
+  .ai{background:var(--ink);color:var(--paper);position:relative;overflow:hidden}
+  .ai .glow{position:absolute;width:55vw;height:55vw;right:-12vw;top:-12vw;border-radius:50%;background:radial-gradient(circle,rgba(242,68,198,.45),transparent 62%);filter:blur(44px);opacity:.5}
+  .ai .glow2{position:absolute;width:50vw;height:50vw;left:-14vw;bottom:-20vw;border-radius:50%;background:radial-gradient(circle,rgba(36,171,255,.5),transparent 62%);filter:blur(44px);opacity:.45}
+  .ai .wrap{position:relative;z-index:2}
+  .ai::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(120% 100% at 70% 30%, rgba(8,5,16,.35), rgba(8,5,16,.62) 70%)}
+  .ai .eyebrow{color:var(--mint)}
+  .ai h2{font-family:var(--disp);font-weight:700;font-size:clamp(2rem,5vw,3.6rem);line-height:1.02;letter-spacing:-.02em;margin:.7rem 0;max-width:18ch}
+  .ai .intro{color:rgba(255,255,255,.8);max-width:50ch;font-size:1.1rem;margin-bottom:2.6rem}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+  @media(max-width:760px){.steps{grid-template-columns:1fr}}
+  .step{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:1.6rem}
+  .step .k{font-family:var(--disp);font-size:2.3rem;font-weight:800;line-height:1}
+  .step h4{font-family:var(--disp);font-size:1.2rem;margin:.6rem 0 .5rem}
+  .step p{color:rgba(255,255,255,.72);font-size:.95rem}
+  .chips{display:flex;gap:.7rem;flex-wrap:wrap;margin:2.2rem 0;font-weight:600}
+  .chips span{padding:.5rem 1rem;border:1px solid rgba(255,255,255,.2);border-radius:100px;font-size:.9rem}
+  /* three ways */
+  .models{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  @media(max-width:760px){.models{grid-template-columns:1fr}}
+  .model{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:20px;padding:1.9rem;background:#fff;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;cursor:pointer}
+  .model:hover{transform:translateY(-4px);box-shadow:0 22px 60px rgba(14,10,24,.1)}
+  .model .tag{font-family:var(--disp);font-weight:700;font-size:1.35rem;margin-bottom:.5rem}
+  .model p{color:var(--muted);font-size:.97rem;margin-bottom:1.1rem;flex:1}
+  .model .meta{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .model .more{margin-top:1.1rem;font-weight:600;color:var(--ink);display:inline-flex;gap:.4rem;transition:gap .3s}
+  .model:hover .more{gap:.7rem}
+  /* work tiles (clickable) */
+  .work{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  @media(max-width:820px){.work{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.work{grid-template-columns:1fr}}
+  .tile{position:relative;display:block;border-radius:18px;overflow:hidden;aspect-ratio:4/3;background:var(--ink);cursor:pointer;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s}
+  .tile:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(14,10,24,.22)}
+  .tile img,.tile video{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+  .tile:hover img,.tile:hover video{transform:scale(1.07)}
+  .tile::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(8,5,16,0) 38%,rgba(8,5,16,.82));opacity:.8;transition:opacity .4s}
+  .tile:hover::after{opacity:1}
+  .tile .cap{position:absolute;inset:auto 0 0 0;padding:1.2rem;color:#fff;z-index:2}
+  .tile .cap b{font-family:var(--disp);font-weight:700;font-size:1.1rem;display:block;letter-spacing:-.01em}
+  .tile .cap span{font-weight:400;opacity:.82;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase}
+  .tile .view{position:absolute;top:1rem;right:1rem;z-index:2;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.32);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;opacity:0;transform:translateY(-8px) rotate(-20deg);transition:all .45s cubic-bezier(.16,1,.3,1)}
+  .tile:hover .view{opacity:1;transform:none}
+  .worklink{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.6rem;font-weight:600;color:var(--ink);background:none;border:none;font-family:var(--body);font-size:1rem;cursor:pointer;transition:gap .3s}
+  .worklink:hover{gap:.7rem}
+  .tile.more{display:none}
+  .work.expanded .tile.more{display:block}
+  /* work modal */
+  .modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:1.5rem}
+  .modal.open{display:flex}
+  .modal__bg{position:absolute;inset:0;background:rgba(8,5,16,.82);backdrop-filter:blur(10px)}
+  .modal__panel{position:relative;z-index:1;background:var(--ink);color:#fff;border-radius:22px;overflow:hidden;max-width:940px;width:100%;max-height:86vh;display:grid;grid-template-columns:1.25fr 1fr;box-shadow:0 40px 120px rgba(0,0,0,.55);animation:popin .45s cubic-bezier(.16,1,.3,1)}
+  @keyframes popin{from{opacity:0;transform:translateY(20px) scale(.98)}to{opacity:1;transform:none}}
+  @media(max-width:720px){.modal__panel{grid-template-columns:1fr;max-height:92vh;overflow:auto}}
+  .modal__media{background:#000;overflow:hidden;min-height:240px}
+  .modal__media img,.modal__media video{width:100%;height:100%;object-fit:cover;max-height:86vh;display:block}
+  .modal__body{padding:2.2rem;display:flex;flex-direction:column;gap:.7rem;overflow:auto}
+  .modal__cat{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);font-weight:600}
+  .modal__title{font-family:var(--disp);font-weight:700;font-size:1.9rem;line-height:1.05}
+  .modal__desc{color:rgba(255,255,255,.82);font-size:1.02rem;line-height:1.6}
+  .modal__close{position:absolute;top:1rem;right:1rem;z-index:3;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.45);color:#fff;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .3s}
+  .modal__close:hover{background:rgba(255,255,255,.18)}
+  /* work category tiles + category modal */
+  .cat-count{position:absolute;top:1rem;left:1rem;z-index:2;font-size:.72rem;font-weight:600;letter-spacing:.03em;background:rgba(255,255,255,.16);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.32);color:#fff;padding:.25rem .7rem;border-radius:100px}
+  .catpanel{position:relative;z-index:1;background:var(--ink);color:#fff;border-radius:22px;max-width:1040px;width:100%;max-height:88vh;overflow:auto;padding:clamp(1.4rem,3vw,2.2rem);box-shadow:0 40px 120px rgba(0,0,0,.55);animation:popin .45s cubic-bezier(.16,1,.3,1)}
+  .catpanel .modal__cat{color:var(--mint)}
+  .catpanel h3{font-family:var(--disp);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.2rem);line-height:1.05;margin:.2rem 0 1.4rem}
+  .catgal{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  @media(max-width:760px){.catgal{grid-template-columns:1fr 1fr}}
+  @media(max-width:480px){.catgal{grid-template-columns:1fr}}
+  /* black clients logos — uniform grid (transparent logos, one consistent black) */
+  .clients-logos{background:#000;color:#fff;overflow:hidden;padding-top:1rem;padding-bottom:3.6rem}
+  .clients-logos + .contact{padding-top:4.5rem}
+  .clients-logos .eyebrow{color:rgba(255,255,255,.55)}
+  .logo-marquee + .logo-marquee{margin-top:1.8rem}
+  .logo-marquee{overflow:hidden;margin-top:1.4rem;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .logo-row{display:flex;gap:clamp(2.5rem,5vw,5rem);align-items:center;width:max-content;animation:logoscroll 70s linear infinite}
+  .logo-row.rev{animation-direction:reverse;animation-duration:64s}
+  /* logos are transparent PNGs now — no background, they blend straight onto black */
+  .logo-row img{height:42px;width:auto;display:block;opacity:.92;flex:none;filter:grayscale(1) brightness(1.4)}
+  .clients-logos:hover .logo-row{animation-play-state:paused}
+  @keyframes logoscroll{to{transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+
+<!-- NAV + HERO -->
+<header class="hero hero--full">
+  <video class="hero-bg" src="work/montage.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+  <canvas data-gradient aria-hidden="true"></canvas>
+  <nav class="nav"><div class="wrap">
+    <div class="mark">THE COLLECTIVE MIND</div>
+    <div class="nav-links">
+      <a href="offers.html">Offers</a>
+      <a href="agents.html">Team</a>
+      <a href="#work">Work</a>
+      <a href="mailto:info@thecollectivemind.me" class="btn btn--lghost cta">Let's talk</a>
+    </div>
+  </div></nav>
+  <div class="wrap">
+    <p class="eyebrow" style="color:rgba(255,255,255,.85)">Creative collective · UAE &amp; worldwide · since 2021</p>
+    <h1>A community of creatives, <span class="b">not an agency.</span></h1>
+    <p class="lede">Senior-only, embedded, and remote. We become a seamless extension of your team across branding, marketing, web, and AI production. You own everything we make.</p>
+    <div class="hero-cta">
+      <a href="offers.html" class="btn btn--light">Find your fit</a>
+      <a href="agents.html" class="btn btn--lghost">Meet the team</a>
+    </div>
+  </div>
+</header>
+
+<!-- WHAT WE DO (6 pillars) -->
+<section id="do">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">What we do</p>
+      <h2>A community for taste. <span class="grad-text">AI for speed.</span></h2>
+      <p>A community of senior creatives brings the taste and the craft. AI, woven through everything we make, brings the effectiveness and the speed. You get both, on every discipline below.</p>
+    </div>
+    <div class="pillars rv">
+      <div class="pillar"><div class="n">01</div><h3>Brand &amp; Design</h3><p>Identity, packaging, wayfinding, and the systems that hold a brand together.</p></div>
+      <div class="pillar"><div class="n">02</div><h3>Marketing &amp; Strategy</h3><p>Campaigns, social, and content strategy that earns attention and converts it.</p></div>
+      <div class="pillar"><div class="n">03</div><h3>Web &amp; App</h3><p>UI/UX, design and build, for products people actually want to use.</p></div>
+      <div class="pillar"><div class="n">04</div><h3>Motion &amp; AI Production</h3><p>Film, motion graphics, and AI-assisted image and video at production speed.</p></div>
+      <div class="pillar"><div class="n">05</div><h3>AI Integration</h3><p>Workflow automation and custom tools that make your team faster.</p></div>
+      <div class="pillar"><div class="n">06</div><h3>Talent on Demand</h3><p>Embed senior creatives into your team, scaled up or down as you need.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUT AI TO WORK -->
+<section class="ai" id="ai">
+  <canvas class="dark-canvas" data-gradient-dark aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="rv">
+      <p class="eyebrow">New · for startups &amp; small business</p>
+      <h2>Put AI to work inside your business.</h2>
+      <p class="intro">Most small teams are buried in manual design and marketing work. We map how you operate, weave AI into your workflows, and build the production pipelines that let you ship like a team three times your size.</p>
+    </div>
+    <div class="steps rv">
+      <div class="step"><div class="k grad-text">01</div><h4>Audit</h4><p>We map your design and marketing workflows and find where AI actually pays off.</p></div>
+      <div class="step"><div class="k grad-text">02</div><h4>Integrate</h4><p>We wire AI into your tools, from content to production to operations.</p></div>
+      <div class="step"><div class="k grad-text">03</div><h4>Scale</h4><p>Custom AI production pipelines so your output grows without new headcount.</p></div>
+    </div>
+    <div class="chips rv"><span>Faster output</span><span>Lower cost</span><span>No new hires</span><span>Owned by your team</span></div>
+    <a href="agents.html" class="btn btn--light rv">Meet the team</a>
+  </div>
+</section>
+
+<!-- THREE WAYS TO PLUG US IN -->
+<section id="how" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">How we work</p>
+      <h2>Three ways to <span class="grad-text">plug us in.</span></h2>
+      <p>Not an agency retainer. Pick the shape that fits where you are.</p>
+    </div>
+    <div class="models rv">
+      <a class="model" href="offers.html#embedded"><div class="tag">Embedded Squad</div><p>A senior creative and AI pod that joins your team monthly and ships alongside you.</p><div class="meta">Monthly · ongoing</div><div class="more">Learn more →</div></a>
+      <a class="model" href="offers.html#sprint"><div class="tag">Project Sprint</div><p>Fixed scope, fast turnaround. A defined outcome delivered in weeks, not quarters.</p><div class="meta">Fixed scope · weeks</div><div class="more">Learn more →</div></a>
+      <a class="model" href="offers.html#retainer"><div class="tag">AI Retainer</div><p>Continuous AI integration and production, tuned to your workflows over time.</p><div class="meta">Ongoing · for SMBs</div><div class="more">Learn more →</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK (real media) -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Selected work</p>
+      <h2>What we have <span class="grad-text">humbly mastered.</span></h2>
+      <p>The categories we work across. Open one to see the projects inside.</p>
+    </div>
+    <div class="work cats rv" id="catGrid"></div>
+  </div>
+</section>
+
+<!-- CLIENTS (moving logo banner on black) -->
+<section class="clients-logos">
+  <div class="wrap rv">
+    <p class="eyebrow">Trusted by brands, institutions &amp; agencies</p>
+  </div>
+  <div class="logo-marquee"><div class="logo-row" id="lrow1"></div></div>
+  <div class="logo-marquee"><div class="logo-row rev" id="lrow2"></div></div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap rv">
+    <p class="eyebrow" style="color:var(--mint)">Let's talk</p>
+    <h2 class="grad-text">Make the remarkable.</h2>
+    <div class="row">
+      <p style="max-width:36ch;color:rgba(255,255,255,.78)">Tell us where your brand is. A senior partner replies, not a sales bot.</p>
+      <a href="mailto:info@thecollectivemind.me" class="email">info@thecollectivemind.me</a>
+    </div>
+    <div class="cta-row">
+      <a href="offers.html" class="btn btn--light">Find your fit</a>
+      <a href="agents.html" class="btn btn--lghost">Meet the team</a>
+    </div>
+    <div class="foot">
+      <div>© 2026 The Collective Mind FZE · Sharjah, UAE · Talent worldwide.</div>
+      <div class="socials"><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">TikTok</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORY MODAL (gallery of projects in a category) -->
+<div class="modal" id="catModal" aria-hidden="true" role="dialog">
+  <div class="modal__bg" data-cclose></div>
+  <div class="catpanel">
+    <button class="modal__close" data-cclose aria-label="Close">✕</button>
+    <div class="modal__cat" id="cmCat"></div>
+    <h3 id="cmTitle"></h3>
+    <div class="catgal" id="cmGal"></div>
+  </div>
+</div>
+
+<!-- WORK MODAL -->
+<div class="modal" id="workModal" aria-hidden="true" role="dialog">
+  <div class="modal__bg" data-close></div>
+  <div class="modal__panel">
+    <button class="modal__close" data-close aria-label="Close">✕</button>
+    <div class="modal__media" id="mMedia"></div>
+    <div class="modal__body">
+      <div class="modal__cat" id="mCat"></div>
+      <h3 class="modal__title" id="mTitle"></h3>
+      <p class="modal__desc" id="mDesc"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var P={
+    creativedubai:{t:'Creative Dubai',s:'Film · Campaign',m:'work/creative-dubai-1.mp4',d:"An art-direction film for Creative Dubai that asks what makes a masterpiece, layering classical painting and sculpture with motion and Arabic typography."},
+    asus:{t:'ASUS',s:'Tech · Advertising',m:'work/asus.mp4',d:"A product launch film for ASUS: clean hero shots, reflections and motion built to make the hardware the story."},
+    gulfood:{t:'Gulfood',s:'Event · Campaign',m:'work/gulfood.mp4',d:"Event film and content for Gulfood, the region's largest food and beverage trade show, capturing the scale and energy of the floor."},
+    swamp:{t:'Swamp of Heroes',s:'Motion · 3D · Game',m:'work/swamp.mp4',d:"A 3D environment and cinematic lighting study for a game world, from set dressing to mood and atmosphere."},
+    yallaplay:{t:'YallaPlay',s:'App · Gaming',m:'work/yallaplay.mp4',d:"Launch motion and identity for YallaPlay's Arneeb Masters, a gaming property built to feel competitive and premium."},
+    analytics:{t:'Integrated tech & AI',s:'AI solutions',m:'work/analytics.gif',d:"A live social-analytics dashboard: the integrated tools we build so a lean team can track brand performance across channels and AI search."},
+    sephora:{t:'Sephora',s:'Retail · Social',m:'work/gs_sephora.jpg',d:"A social-first content system for Sephora: one consistent visual language across formats and campaigns."},
+    cuisine:{t:'Cuisine',s:'Food · Photography',m:'work/gs_cuisine.jpg',d:"AI-assisted food photography: appetising hero imagery generated and finished without a studio shoot."},
+    launch:{t:'Product launch',s:'Branding · Identity',m:'work/gs_launch.jpg',d:"Brand identity and packaging for a vitamin product launch, from logo and system through to on-pack and launch comms."},
+    tourism:{t:'Destinations',s:'Tourism · Campaign',m:'work/gs_tourism.jpg',d:"The World's Coolest Winter tourism campaign for the UAE: bilingual art direction across digital and out-of-home."},
+    alnaser:{t:'Alnaser',s:'AI Production · 3D',m:'work/alnaser1.jpg',d:"Pixar-style AI characters for a sports property, designed, generated and art-directed as one consistent cast."},
+    fitness:{t:'Fitness',s:'Editorial · Brand',m:'work/gs_fitness.jpg',d:"Identity and wayfinding for GOAL, an indoor football arena: signage and environmental branding."},
+    hospitality:{t:'Hospitality',s:'Brand · Art direction',m:'work/gs_hospitality.jpg',d:"Brand identity and art direction for a hospitality concept, from logo to uniforms and social."},
+    restaurant:{t:'Restaurant',s:'Food · Social',m:'work/gs_restaurant.jpg',d:"AI food photography and social content for a restaurant: a full menu shot without a single plate leaving the kitchen."},
+    holofair:{t:'Holofair',s:'UI/UX · Web & App',m:'work/holofair.gif',d:"UI/UX for Holofair, an XR collaboration platform: chat, profiles and settings designed as a system."},
+    identity:{t:'Identity in motion',s:'Branding',m:'work/identity-motion.gif',d:"An animated brand identity: the logo and system brought to life for screens and social."}
+  };
+  var CATS=[
+    {n:'Branding & Identity',k:'Identity, packaging & art direction',c:'launch',items:['launch','hospitality','fitness','identity']},
+    {n:'Motion & Film',k:'Film, motion & cinematic 3D',c:'creativedubai',items:['creativedubai','swamp']},
+    {n:'AI Production',k:'AI photo, video, 3D & tools',c:'alnaser',items:['alnaser','cuisine','restaurant','analytics']},
+    {n:'Web & App',k:'UI/UX, design & build',c:'holofair',items:['holofair','yallaplay']},
+    {n:'Social & Content',k:'Social-first content systems',c:'sephora',items:['sephora','tourism']},
+    {n:'Advertising & Campaigns',k:'Concept to production',c:'asus',items:['asus','gulfood']}
+  ];
+  function media(p){return /\.(mp4|webm|mov)$/i.test(p.m)?'<video src="'+p.m+'" autoplay muted loop playsinline></video>':'<img src="'+p.m+'" alt="'+p.t+'" loading="lazy"/>';}
+  function tile(p,key,badge){return '<a class="tile" href="#" data-k="'+key+'">'+media(p)+(badge?'<span class="cat-count">'+badge+'</span>':'')+'<div class="view">↗</div><div class="cap"><b>'+p.t+'</b><span>'+p.s+'</span></div></a>';}
+
+  // category tiles
+  var grid=document.getElementById('catGrid');
+  grid.innerHTML=CATS.map(function(cat){return '<a class="tile" href="#" data-cat="'+cat.n+'">'+media(P[cat.c])+'<span class="cat-count">'+cat.items.length+' projects</span><div class="view">↗</div><div class="cap"><b>'+cat.n+'</b><span>'+cat.k+'</span></div></a>';}).join('');
+
+  // project modal
+  var modal=document.getElementById('workModal'),mMedia=document.getElementById('mMedia'),mCat=document.getElementById('mCat'),mTitle=document.getElementById('mTitle'),mDesc=document.getElementById('mDesc');
+  function openProject(p){mMedia.innerHTML=media(p);mTitle.textContent=p.t;mCat.textContent=p.s;mDesc.textContent=p.d;modal.classList.add('open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function closeProject(){modal.classList.remove('open');modal.setAttribute('aria-hidden','true');mMedia.innerHTML='';document.body.style.overflow=cmodal.classList.contains('open')?'hidden':'';}
+
+  // category modal (project gallery)
+  var cmodal=document.getElementById('catModal'),cmCat=document.getElementById('cmCat'),cmTitle=document.getElementById('cmTitle'),cmGal=document.getElementById('cmGal');
+  function openCat(cat){cmCat.textContent=cat.items.length+' projects';cmTitle.textContent=cat.n;cmGal.innerHTML=cat.items.map(function(k){return tile(P[k],k,0);}).join('');cmGal.querySelectorAll('.tile').forEach(function(t){t.setAttribute('href','project.html?id='+t.getAttribute('data-k'));});cmodal.classList.add('open');cmodal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
+  function closeCat(){cmodal.classList.remove('open');cmodal.setAttribute('aria-hidden','true');if(!modal.classList.contains('open'))document.body.style.overflow='';}
+
+  grid.querySelectorAll('.tile').forEach(function(t){t.addEventListener('click',function(e){e.preventDefault();var c=CATS.filter(function(x){return x.n===t.getAttribute('data-cat');})[0];if(c)openCat(c);});});
+  modal.querySelectorAll('[data-close]').forEach(function(c){c.addEventListener('click',closeProject);});
+  cmodal.querySelectorAll('[data-cclose]').forEach(function(c){c.addEventListener('click',closeCat);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(modal.classList.contains('open'))closeProject();else if(cmodal.classList.contains('open'))closeCat();}});
+
+  // moving logo banner: two rows, each duplicated for a seamless loop
+  function row(el,from,to){if(!el)return;var h='';for(var pass=0;pass<2;pass++){for(var i=from;i<=to;i++){var n=('0'+i).slice(-2);h+='<img src="work/logos/logo'+n+'.png" alt="" loading="lazy"/>';}}el.innerHTML=h;}
+  row(document.getElementById('lrow1'),1,17);
+  row(document.getElementById('lrow2'),18,34);
+})();
+</script>
+<script src="gradient.js"></script>
+</body>
+</html>

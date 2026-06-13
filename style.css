@@ -1,0 +1,67 @@
+:root{
+  --violet:#b19afe; --magenta:#f244c6; --blue:#24abff; --mint:#a0ffe8;
+  --ink:#0e0a18; --ink2:#16101f; --paper:#f6f3fb; --muted:#6b6478; --line:rgba(14,10,24,.12);
+  --grad:linear-gradient(93deg,#b19afe 3%,#f244c6 36%,#24abff 78%,#a0ffe8 113%);
+  --disp:"Poppins","Roboto","Helvetica Neue",Arial,sans-serif; --body:"Poppins","Roboto","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3rem)}
+.grad-text{background:var(--grad);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:gradmove 7s ease-in-out infinite}
+@keyframes gradmove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@media(prefers-reduced-motion:reduce){.grad-text,.contact h2{animation:none}}
+.eyebrow{font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;padding:.8rem 1.5rem;border-radius:100px;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,background .3s;cursor:pointer;border:1px solid transparent;font-family:var(--body)}
+.btn--solid{background:var(--ink);color:var(--paper)}.btn--solid:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(14,10,24,.26)}
+.btn--light{background:var(--paper);color:var(--ink)}.btn--light:hover{transform:translateY(-2px)}
+.btn--lghost{border-color:rgba(255,255,255,.4);color:#fff}.btn--lghost:hover{background:rgba(255,255,255,.12)}
+.btn--ghost{border-color:var(--line);color:var(--ink)}.btn--ghost:hover{background:rgba(14,10,24,.05)}
+.btn--wa{background:var(--mint);color:#063b30}.btn--wa:hover{transform:translateY(-2px)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* shared nav */
+.nav{position:absolute;top:0;left:0;right:0;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:clamp(1.1rem,2.6vw,1.8rem) 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.mark{font-family:var(--disp);font-weight:800;letter-spacing:.02em;font-size:1.05rem;color:#fff}
+.nav-links{display:flex;gap:1.5rem;align-items:center;font-size:.9rem;font-weight:500;color:#fff}
+.nav-links a{opacity:.85;transition:opacity .3s}.nav-links a:hover{opacity:1}
+@media(max-width:760px){.nav-links a:not(.cta){display:none}}
+
+/* hero */
+.hero{position:relative;display:flex;flex-direction:column;justify-content:center;color:#fff;overflow:hidden;isolation:isolate}
+.hero--full{min-height:100svh}
+.hero--band{min-height:62svh;padding-top:5rem}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-2;display:block}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(100deg,rgba(14,10,24,.4)0%,rgba(14,10,24,.12)30%,transparent 56%)}
+.hero h1{font-family:var(--disp);font-weight:700;line-height:1.0;letter-spacing:-.02em;font-size:clamp(2.3rem,6vw,5rem);margin:.7rem 0 1.1rem;text-shadow:0 1px 30px rgba(20,8,44,.4);max-width:18ch}
+.hero h1 .b{color:var(--mint)}
+.hero p.lede{max-width:46ch;font-size:clamp(1rem,1.35vw,1.18rem);color:rgba(255,255,255,.9);text-shadow:0 1px 24px rgba(20,8,44,.4)}
+.hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.7rem}
+
+/* sections */
+section{padding:clamp(3.5rem,8vw,6.5rem) 0}
+.sec-head{max-width:46rem;margin-bottom:clamp(2rem,4vw,3rem)}
+.sec-head h2{font-family:var(--disp);font-weight:700;line-height:1.04;letter-spacing:-.02em;font-size:clamp(1.8rem,4.4vw,3.2rem);margin:.5rem 0}
+.sec-head p{color:var(--muted);font-size:1.06rem;max-width:44ch}
+
+/* clients marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.2rem 0;overflow:hidden}
+.track-m{display:flex;gap:3rem;white-space:nowrap;animation:scroll 42s linear infinite;font-weight:600;color:var(--muted);font-size:1rem}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* dark dancing-gradient canvas for dark sections */
+.dark-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+
+/* footer / contact — pure black so it merges with the logos section */
+.contact{background:#000;color:var(--paper);position:relative;overflow:hidden}
+.contact .wrap{position:relative;z-index:2}
+.contact h2{font-family:var(--disp);font-weight:800;letter-spacing:-.02em;font-size:clamp(2.4rem,8.4vw,5.6rem);line-height:1.12;padding-bottom:.1em;background:var(--grad);background-size:280% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:gradmove 7s ease-in-out infinite}
+.contact .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.8rem;align-items:flex-end;margin-top:2.6rem}
+.contact .cta-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:2.2rem}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:3.5rem;padding-top:1.3rem;border-top:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);font-size:.84rem}
+.foot .socials{display:flex;gap:1.1rem}.foot a:hover{color:#fff}
+.email{font-size:clamp(1.05rem,2.2vw,1.6rem);font-weight:600;border-bottom:2px solid var(--mint);padding-bottom:.2rem}

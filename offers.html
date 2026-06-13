@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Offers & packages — find your fit | The Collective Mind</title>
+<meta name="description" content="Plug us in as a one-off project sprint or an ongoing retainer. Then figure your package: a tailored creative + AI solution by where your brand is. UAE & KSA, bilingual EN/AR." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .ways{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+  @media(max-width:760px){.ways{grid-template-columns:1fr}}
+  .way{border:1px solid var(--line);border-radius:20px;padding:1.9rem;background:#fff;scroll-margin-top:90px;display:flex;flex-direction:column}
+  .way .k{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.5rem}
+  .way h3{font-family:var(--disp);font-weight:700;font-size:1.45rem;margin-bottom:.5rem}
+  .way p{color:var(--muted);font-size:.96rem;margin-bottom:.9rem;flex:1}
+  .way .meta{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  /* detail blocks */
+  .detail{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start}
+  @media(max-width:820px){.detail{grid-template-columns:1fr}}
+  .detail h2{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,3.8vw,2.6rem);letter-spacing:-.02em;line-height:1.06;margin:.5rem 0}
+  .detail p{color:var(--muted);font-size:1.05rem}
+  .ex{list-style:none;display:grid;gap:.6rem;max-height:360px;overflow-y:auto;padding:6px 10px 6px 2px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 91%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 7%,#000 91%,transparent 100%);scrollbar-width:thin;scrollbar-color:var(--violet) transparent}
+  .ex::-webkit-scrollbar{width:6px}
+  .ex::-webkit-scrollbar-thumb{background:var(--violet);border-radius:100px}
+  .ex::-webkit-scrollbar-track{background:transparent}
+  .ex li{padding:.9rem 1.1rem;border:1px solid var(--line);border-radius:12px;background:#fff;font-weight:500;font-size:.97rem;transition:border-color .25s,transform .25s cubic-bezier(.16,1,.3,1)}
+  .ex li:hover{border-color:var(--violet);transform:translateX(3px)}
+  .ex-hint{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.7rem}
+  .pillbar{display:inline-flex;gap:.5rem;flex-wrap:wrap;margin-top:1rem}
+  .pillbar span{font-size:.8rem;font-weight:600;padding:.4rem .9rem;border-radius:100px;background:var(--paper);border:1px solid var(--line)}
+  .ret{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;margin-top:1.5rem}
+  @media(max-width:760px){.ret{grid-template-columns:1fr}}
+  .retcard{border:1px solid var(--line);border-radius:20px;padding:1.9rem;background:#fff}
+  .retcard.dark{background:var(--ink);color:#fff;border-color:transparent}
+  .retcard h3{font-family:var(--disp);font-weight:700;font-size:1.4rem;margin-bottom:.5rem}
+  .retcard p{color:var(--muted);font-size:.97rem;margin-bottom:.9rem}.retcard.dark p{color:rgba(255,255,255,.8)}
+  .retcard .meta{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}.retcard.dark .meta{color:var(--mint)}
+  /* picker */
+  .picker-box{background:#fff;border:1px solid var(--line);border-radius:24px;padding:clamp(1.4rem,3vw,2.4rem);box-shadow:0 30px 80px rgba(14,10,24,.14);margin-top:-2rem;position:relative;z-index:3}
+  .lbl{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1.3rem 0 .7rem}
+  .chips{display:flex;gap:.6rem;flex-wrap:wrap}
+  .chip{border:1px solid var(--line);background:var(--paper);border-radius:100px;padding:.6rem 1.1rem;font-weight:600;cursor:pointer;font-size:.9rem;transition:all .25s;font-family:var(--body)}
+  .chip:hover{border-color:var(--ink)}.chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .chip.stage.active{background:var(--violet);border-color:var(--violet);color:#1a0f33}
+  #buildBtn{margin-top:1.6rem}
+  .result{display:none;margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.6rem}
+  .result.show{display:grid;grid-template-columns:1.5fr 1fr;gap:1.6rem}
+  @media(max-width:760px){.result.show{grid-template-columns:1fr}}
+  .result .rec-k{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .result .rec{font-family:var(--disp);font-weight:800;font-size:1.9rem;line-height:1;margin:.2rem 0}
+  .result .price{font-weight:700;margin-bottom:.4rem}
+  .result .tag{color:var(--muted);margin-bottom:1.1rem}
+  .result h4{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:1rem 0 .5rem}
+  .result ul{list-style:none;display:grid;gap:.4rem}
+  .result li{padding-left:1.3rem;position:relative;font-size:.95rem}.result li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;border-radius:50%;background:var(--grad)}
+  .result .agents{display:flex;flex-wrap:wrap;gap:.4rem}
+  .result .agents span{font-size:.8rem;padding:.3rem .7rem;border-radius:100px;background:var(--paper);font-weight:600}
+  .result .side{background:var(--ink);color:#fff;border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;gap:.7rem;justify-content:center}
+  .result .side .so{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
+  .pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:1.5rem}
+  @media(max-width:900px){.pkgs{grid-template-columns:1fr}}
+  .pkg{border:1px solid var(--line);border-radius:20px;padding:1.8rem;background:#fff;display:flex;flex-direction:column}
+  .pkg.feat{background:var(--ink);color:#fff;border-color:transparent}
+  .pkg .name{font-family:var(--disp);font-weight:800;font-size:1.6rem}
+  .pkg .for{color:var(--muted);font-size:.9rem;margin:.2rem 0 1rem}.pkg.feat .for{color:rgba(255,255,255,.7)}
+  .pkg .price{font-weight:700;margin-bottom:1rem}
+  .pkg ul{list-style:none;display:grid;gap:.4rem;margin-bottom:1.3rem;flex:1}
+  .pkg li{font-size:.92rem;padding-left:1.3rem;position:relative}.pkg li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}.pkg.feat li::before{color:var(--mint)}
+  .vat{color:var(--muted);font-size:.82rem;margin-top:1rem}
+  .pkgs.four{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+  @media(max-width:600px){.pkgs.four{grid-template-columns:1fr}}
+  .agencies{margin-top:1.1rem;border:1px dashed var(--line);border-radius:16px;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+  .agencies h4{font-family:var(--disp);font-size:1.2rem}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
+  .step .n{font-family:var(--disp);font-weight:800}.step h4{font-family:var(--disp);font-size:1.1rem;margin:.3rem 0 .3rem}.step p{color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+
+<header class="hero hero--band" style="padding-bottom:7rem">
+  <canvas data-gradient aria-hidden="true"></canvas>
+  <nav class="nav"><div class="wrap">
+    <div class="mark"><a href="index.html">THE COLLECTIVE MIND</a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="agents.html">Team</a><a href="mailto:info@thecollectivemind.me" class="btn btn--lghost cta">Let's talk</a></div>
+  </div></nav>
+  <div class="wrap">
+    <p class="eyebrow" style="color:rgba(255,255,255,.85)">Offers &amp; packages</p>
+    <h1>Figure out <span class="b">your package.</span></h1>
+    <p class="lede">Senior creatives for the taste, AI agents for the speed. Tell us what you need, and we tailor a package: retainer, project, or subscription.</p>
+  </div>
+</header>
+
+<!-- FIGURE YOUR PACKAGE (picker, overlaps hero) -->
+<section id="fit" style="padding-top:0;scroll-margin-top:80px">
+  <div class="wrap">
+    <div class="picker-box rv">
+      <p class="eyebrow">Figure your package</p>
+      <h2 style="font-family:var(--disp);font-weight:700;font-size:clamp(1.5rem,3.4vw,2.3rem);letter-spacing:-.02em;margin:.3rem 0 .3rem">What do you need?</h2>
+      <p style="color:var(--muted);margin-bottom:.3rem">Pick everything that applies. We tailor a solution from what we do.</p>
+      <div class="lbl">I want to…</div>
+      <div class="chips" id="needs">
+        <button class="chip" data-k="brand">Build / refresh my brand</button>
+        <button class="chip" data-k="post">Post on social, consistently</button>
+        <button class="chip" data-k="copy">Optimise my marketing copy</button>
+        <button class="chip" data-k="analysis">Understand my market</button>
+        <button class="chip" data-k="visual">Create visual content &amp; infographics</button>
+        <button class="chip" data-k="web">Build a website or app</button>
+        <button class="chip" data-k="aiprod">Produce AI photo / video / 3D</button>
+        <button class="chip" data-k="found">Get found on Google &amp; AI search</button>
+        <button class="chip" data-k="team">Optimise my team with AI tools</button>
+        <button class="chip" data-k="arabic">Work in Arabic, natively</button>
+      </div>
+      <div class="lbl">Where is your brand? (optional)</div>
+      <div class="chips" id="stages">
+        <button class="chip stage" data-s="startup">Startup</button>
+        <button class="chip stage" data-s="small">Small business</button>
+        <button class="chip stage" data-s="growing">Growing business</button>
+        <button class="chip stage" data-s="enterprise">Enterprise</button>
+        <button class="chip stage" data-s="agency">Agency</button>
+      </div>
+      <button id="buildBtn" class="btn btn--solid">Build my solution</button>
+      <div class="result" id="result">
+        <div>
+          <div class="rec-k">Recommended</div>
+          <div class="rec" id="recName"></div>
+          <div class="price" id="recPrice"></div>
+          <div class="tag" id="recTag"></div>
+          <h4>What your solution includes</h4>
+          <ul id="recIncludes"></ul>
+          <h4>Agents on your team</h4>
+          <div class="agents" id="recAgents"></div>
+        </div>
+        <div class="side">
+          <div class="so">Your next step</div>
+          <div style="font-family:var(--disp);font-size:1.2rem;font-weight:700">A 20-minute diagnostic call</div>
+          <p style="color:rgba(255,255,255,.8);font-size:.92rem">A senior partner confirms scope and a fixed range. No sales bot.</p>
+          <a href="mailto:info@thecollectivemind.me" class="btn btn--light" style="align-self:flex-start">Let's talk</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THREE WAYS (overview, expanded) -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">How we work</p>
+      <h2>Three ways to <span class="grad-text">plug us in.</span></h2>
+      <p>Not an agency retainer by default. Pick a one-off project, or an ongoing relationship. Either way, one senior team and a clean handover.</p>
+    </div>
+    <div class="ways rv">
+      <a class="way" href="#oneoff" id="sprint">
+        <div class="k">One-off</div>
+        <h3>Project Sprint</h3>
+        <p>Fixed scope, fixed fee, fast turnaround. A defined outcome, a rebrand, a site, a campaign, delivered in weeks, not quarters. No scope creep.</p>
+        <div class="meta">Fixed scope · weeks</div>
+      </a>
+      <a class="way" href="#retainers" id="embedded">
+        <div class="k">Ongoing</div>
+        <h3>Embedded Squad</h3>
+        <p>A senior creative and AI pod that joins your team monthly, adopts your tools and rituals, and ships alongside you. One team, one timeline, one budget.</p>
+        <div class="meta">Monthly · ongoing</div>
+      </a>
+      <a class="way" href="#retainers" id="retainer">
+        <div class="k">Ongoing</div>
+        <h3>AI Retainer</h3>
+        <p>We build, run and maintain the AI agents your lean team uses to generate, keep on-brand and track content. Continuous integration, best for SMBs.</p>
+        <div class="meta">Ongoing · for SMBs</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ONE-OFF detail -->
+<section id="oneoff" style="background:#fff;border-top:1px solid var(--line);scroll-margin-top:80px">
+  <div class="wrap detail rv">
+    <div>
+      <p class="eyebrow">One-off</p>
+      <h2>A Project <span class="grad-text">Sprint.</span></h2>
+      <p>When you have a defined outcome and a deadline. We assemble the smallest senior team for the brief, ship it, and hand it over. Fixed scope, fixed fee, no retainer required, no scope creep.</p>
+      <div class="pillbar"><span>Fixed scope</span><span>2–8 weeks</span><span>Fixed fee</span><span>You own it</span></div>
+    </div>
+    <div>
+      <div class="ex-hint">Just some of what we ship · scroll ↓</div>
+      <ul class="ex">
+        <li>Brand identity &amp; guidelines</li>
+        <li>A rebrand or visual refresh</li>
+        <li>Packaging &amp; art direction</li>
+        <li>A website or landing page</li>
+        <li>UI/UX for an app or product</li>
+        <li>Brand &amp; marketing strategy</li>
+        <li>Go-to-market &amp; positioning</li>
+        <li>A campaign, concept to production</li>
+        <li>Social-first content system</li>
+        <li>Content strategy &amp; calendar</li>
+        <li>SEO optimisation &amp; technical audit</li>
+        <li>GEO/AEO: get found in AI answers</li>
+        <li>Paid media setup &amp; launch</li>
+        <li>An AI production run (photo, video, 3D)</li>
+        <li>Motion &amp; film</li>
+        <li>AI workflow integration</li>
+        <li>A custom brand-agent, built &amp; handed over</li>
+        <li>CRM &amp; customer-data setup</li>
+        <li>Marketing automation &amp; journeys (email · WhatsApp · SMS)</li>
+        <li>Social inbox &amp; community management</li>
+        <li>Social listening &amp; brand monitoring</li>
+        <li>Tracking, attribution &amp; analytics</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RETAINERS -->
+<section id="retainers" style="scroll-margin-top:80px">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Ongoing</p>
+      <h2>Retainers, when you need <span class="grad-text">a team on tap.</span></h2>
+      <p>A creative and AI department without the headcount. Senior output every month, plus the tools your team keeps using.</p>
+    </div>
+    <div class="ret rv">
+      <div class="retcard">
+        <h3>Embedded Squad</h3>
+        <p>A senior creative and AI pod inside your team, every month. We work in your tools and rituals, scale up or down, and stay accountable to one timeline and one budget.</p>
+        <div class="meta">Monthly · ongoing · scalable</div>
+      </div>
+      <div class="retcard dark">
+        <h3>AI Retainer</h3>
+        <p>We build, run and maintain the custom agents your lean team uses to generate on-brand content, keep it consistent, and track how you show up in search. The output of a big team, without the hires.</p>
+        <div class="meta">Ongoing · for SMBs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANAGED PACKAGES -->
+<section style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Managed packages</p>
+      <h2>Pick a service, <span class="grad-text">we run it.</span></h2>
+      <p>Clear, productised retainers. Senior creatives for the taste, AI agents for the speed. Subscribe to the agent packs, or have us run the whole thing for you.</p>
+    </div>
+    <div class="pkgs four rv">
+      <div class="pkg">
+        <div class="name">Social Media</div><div class="for">Always-on social, managed for you</div>
+        <ul><li>Strategy &amp; content calendar</li><li>Content &amp; design (EN/AR)</li><li>Scheduling &amp; posting</li><li>Community management</li><li>Monthly reporting</li></ul>
+        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+      </div>
+      <div class="pkg">
+        <div class="name">SEO &amp; AI Visibility</div><div class="for">Found on Google and in AI answers</div>
+        <ul><li>Technical &amp; content SEO</li><li>Keyword &amp; content plan</li><li>GEO/AEO for AI search</li><li>Monthly rankings report</li></ul>
+        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+      </div>
+      <div class="pkg">
+        <div class="name">Paid Media</div><div class="for">Ad management &amp; running</div>
+        <ul><li>Ad creative &amp; copy</li><li>Campaign setup &amp; running</li><li>Audience &amp; budget management</li><li>Performance tracking &amp; reporting</li></ul>
+        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+      </div>
+      <div class="pkg feat">
+        <div class="name">AI Agent Pack</div><div class="for">Subscription to the AI agents</div>
+        <ul><li>Content &amp; Social agent</li><li>SEO &amp; AI Visibility</li><li>Social Designer</li><li>Paid Media support</li><li>Human oversight, no retainer</li></ul>
+        <a href="agents.html" class="btn btn--light">Meet the team</a>
+      </div>
+      <div class="pkg">
+        <div class="name">Growth Platform</div><div class="for">Your marketing operations, run for you</div>
+        <ul><li>CRM &amp; unified customer profiles</li><li>Campaigns &amp; paid-spend control</li><li>Social inbox, listening &amp; approvals</li><li>Email / WhatsApp / SMS automation</li><li>Tracking, attribution &amp; reporting</li></ul>
+        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+      </div>
+    </div>
+    <p class="vat">Managed packages run monthly. Paid Media is plus ad spend. The AI Agent Pack is a subscription. Final scope set after a short call.</p>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section>
+  <div class="wrap">
+    <div class="sec-head rv"><p class="eyebrow">The engagement</p><h2>Diagnose. Compose. Integrate. Hand back.</h2></div>
+    <div class="steps rv">
+      <div class="step"><div class="n grad-text">01</div><h4>Diagnose</h4><p>A short intake to map the gap: capacity, capability, or pace.</p></div>
+      <div class="step"><div class="n grad-text">02</div><h4>Compose</h4><p>We assemble the smallest senior team for the brief. One named lead.</p></div>
+      <div class="step"><div class="n grad-text">03</div><h4>Integrate</h4><p>We adopt your tools and rituals and ship inside your system.</p></div>
+      <div class="step"><div class="n grad-text">04</div><h4>Hand back</h4><p>You own the files, systems, guidelines and brand-trained assets.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES (the offer, after the explanation) -->
+<section id="packages" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Packages by stage</p>
+      <h2>Three clear tiers. <span class="grad-text">Bilingual included.</span></h2>
+      <p>Now you have seen how we work, here is what it costs by where your brand is.</p>
+    </div>
+    <div class="pkgs rv">
+      <div class="pkg">
+        <div class="name">Ignite</div><div class="for">Startups launching their first real brand</div>
+        <div class="price">From AED 15K one-off · or AED 9K/mo</div>
+        <ul><li>Brand identity sprint</li><li>Positioning &amp; messaging</li><li>Starter website</li><li>Beacon AI-readiness check</li><li>One starter brand-agent, handed over</li></ul>
+        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+      </div>
+      <div class="pkg feat">
+        <div class="name">Studio</div><div class="for">Small &amp; growing brands that need output without hiring</div>
+        <div class="price">From AED 18K/mo</div>
+        <ul><li>Senior creative on tap (1–2 slots)</li><li>Content calendar &amp; content (EN/AR)</li><li>Brand-agent suite built into your team</li><li>AI photography &amp; video</li><li>GEO/AEO + performance dashboard</li></ul>
+        <a href="mailto:info@thecollectivemind.me" class="btn btn--light">Start</a>
+      </div>
+      <div class="pkg">
+        <div class="name">Embed</div><div class="for">Enterprises &amp; institutions running brand at scale</div>
+        <div class="price">Custom · from AED 50K/mo</div>
+        <ul><li>Fully embedded senior pod</li><li>AI production at scale</li><li>Custom agent suite, full handover</li><li>Brand governance &amp; training</li><li>Quarterly tune-ups &amp; reporting</li></ul>
+        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Talk to us</a>
+      </div>
+    </div>
+    <p class="vat">Ranges shown ex. VAT. Fully bilingual EN/AR delivery included. Final scope set after a short diagnostic call.</p>
+    <div class="agencies rv">
+      <div>
+        <h4>For agencies</h4>
+        <p style="color:var(--muted);font-size:.94rem;max-width:52ch">Add senior craft and custom agent builds to your team. Unbranded, your client, your margin. A quiet partner track, let's talk.</p>
+      </div>
+      <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Become a partner</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap rv">
+    <p class="eyebrow" style="color:var(--mint)">Ready when you are</p>
+    <h2>Let's find your fit.</h2>
+    <div class="cta-row"><a href="mailto:info@thecollectivemind.me" class="btn btn--light">Let's talk</a><a href="agents.html" class="btn btn--lghost">Meet the team</a></div>
+    <div class="foot"><div>© 2026 The Collective Mind FZE · Sharjah, UAE</div><div class="socials"><a href="index.html">Home</a><a href="agents.html">Team</a></div></div>
+  </div>
+</section>
+
+<script src="gradient.js"></script>
+<script>
+const NEED={
+  brand:{o:'Branding & identity system',a:['Forge','Keeper']},
+  post:{o:'Social media calendar & content (EN/AR)',a:['Scribe','Forge']},
+  copy:{o:'Copywriting & message optimisation',a:['Scribe']},
+  analysis:{o:'Market & competitor analysis',a:['Compass']},
+  visual:{o:'AI photography, video & infographics',a:['Lumen','Forge']},
+  web:{o:'Website or app, design and build',a:[]},
+  aiprod:{o:'AI production: photo, video, 3D, generative',a:['Lumen']},
+  found:{o:'GEO/AEO: get found on Google & AI search',a:['Beacon','Pulse']},
+  team:{o:'AI integration & custom agents for your team',a:['Forge','Keeper','Pulse']},
+  arabic:{o:'Gulf-native Arabic localization',a:['Mirror']}
+};
+const TIER={
+  startup:{name:'Ignite',price:'From AED 15K one-off · or AED 9K/mo',tag:'A senior-built foundation and the first agent, yours from day one.'},
+  smb:{name:'Studio',price:'From AED 18K/mo',tag:'Senior creative on tap, plus a brand-agent suite your team starts to run.'},
+  ent:{name:'Embed',price:'Custom · from AED 50K/mo',tag:'An embedded senior pod and a custom agent suite, built to be owned.'},
+  agency:{name:'Partner bench',price:'Partner track · let\'s talk',tag:'Unbranded senior craft and agent builds you resell as your own.'}
+};
+let needs=new Set(),stage=null;
+document.getElementById('needs').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+  b.classList.toggle('active');b.classList.contains('active')?needs.add(b.dataset.k):needs.delete(b.dataset.k);});
+document.getElementById('stages').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+  const on=b.classList.contains('active');document.querySelectorAll('#stages .chip').forEach(c=>c.classList.remove('active'));
+  if(!on){b.classList.add('active');stage=b.dataset.s;}else{stage=null;}});
+document.getElementById('buildBtn').addEventListener('click',()=>{
+  const ks=[...needs];
+  if(!ks.length && !stage){alert('Pick at least one thing you need.');return;}
+  let tier='smb';
+  if(stage==='agency') tier='agency';
+  else if(stage==='enterprise' || ks.length>=5) tier='ent';
+  else if(stage==='startup' || ks.length<=1) tier='startup';
+  else tier='smb';
+  const t=TIER[tier];
+  document.getElementById('recName').textContent=t.name;
+  document.getElementById('recPrice').textContent=t.price;
+  document.getElementById('recTag').textContent=t.tag;
+  const offs=[],ags=new Set();
+  ks.forEach(k=>{offs.push(NEED[k].o);NEED[k].a.forEach(a=>ags.add(a));});
+  if(!offs.length){offs.push('A senior-built brand foundation');['Compass','Beacon','Forge'].forEach(a=>ags.add(a));}
+  document.getElementById('recIncludes').innerHTML=offs.map(o=>'<li>'+o+'</li>').join('');
+  document.getElementById('recAgents').innerHTML=[...ags].map(a=>'<span>'+a+'</span>').join('')||'<span>Compass</span>';
+  const r=document.getElementById('result');r.classList.add('show');r.scrollIntoView({behavior:'smooth',block:'center'});
+});
+</script>
+</body>
+</html>

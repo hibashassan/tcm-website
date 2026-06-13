@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Meet the team — humans for taste, AI for speed | The Collective Mind</title>
+<meta name="description" content="The people and the AI agents behind The Collective Mind. Senior humans bring the taste and craft, AI agents bring the speed and scale. You own everything we make." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .intro{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:center}
+  @media(max-width:760px){.intro{grid-template-columns:1fr}}
+  .intro h2{font-family:var(--disp);font-weight:700;font-size:clamp(1.7rem,3.8vw,2.6rem);letter-spacing:-.02em;line-height:1.06}
+  .intro p{color:var(--muted);font-size:1.05rem}
+  /* group label */
+  .grp{display:flex;align-items:baseline;gap:.9rem;margin:0 0 1.6rem;font-family:var(--disp);font-weight:700;font-size:.82rem;letter-spacing:.22em;text-transform:uppercase}
+  .grp em{font-style:normal;font-weight:400;letter-spacing:.06em;color:var(--muted)}
+  .grp::after{content:"";flex:1;height:1px;background:var(--line)}
+  /* humans */
+  .humans{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.4rem 1rem;margin-bottom:3.5rem}
+  .human{text-align:center;padding:.6rem}
+  .human .av{width:92px;height:92px;border-radius:50%;margin:0 auto 1.2rem;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-weight:800;font-size:2.1rem;color:#fff;background:#160f22;position:relative}
+  /* rotating gradient ring */
+  .human .av::before{content:"";position:absolute;inset:-3px;border-radius:50%;padding:3px;background:conic-gradient(from 0deg,var(--mint),var(--blue),var(--violet),var(--magenta),var(--mint));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ringspin 4.5s linear infinite}
+  /* rotating glow behind the avatar */
+  .human .av::after{content:"";position:absolute;inset:-9px;border-radius:50%;z-index:-1;background:conic-gradient(from 0deg,var(--mint),var(--blue),var(--violet),var(--magenta),var(--mint));filter:blur(12px);opacity:.6;animation:ringspin 4.5s linear infinite}
+  @keyframes ringspin{to{transform:rotate(360deg)}}
+  @media(prefers-reduced-motion:reduce){.human .av::before,.human .av::after{animation:none}}
+  .human .nm{font-family:var(--disp);font-weight:700;font-size:1.25rem}
+  .human .role{color:var(--ink);font-weight:600;font-size:.9rem;margin-top:.2rem}
+  .human .note{color:var(--muted);font-size:.86rem;margin-top:.45rem;line-height:1.45}
+  /* agents */
+  .roster{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1rem}
+  .agent{border:1px solid var(--line);border-radius:18px;padding:1.5rem;background:#fff;display:flex;flex-direction:column;gap:.7rem;transition:transform .4s,box-shadow .4s}
+  .agent:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(14,10,24,.1)}
+  .agent .top{display:flex;align-items:center;gap:.9rem}
+  .orb{width:54px;height:54px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--disp);font-weight:800;color:#fff;font-size:1.3rem;text-shadow:0 1px 8px rgba(0,0,0,.45);
+    background:
+      radial-gradient(circle at 28% 30%, #f244c6, transparent 56%),
+      radial-gradient(circle at 74% 34%, #24abff, transparent 56%),
+      radial-gradient(circle at 52% 80%, #a0ffe8, transparent 56%),
+      radial-gradient(circle at 36% 62%, #b19afe, transparent 60%),
+      #281643;
+    background-size:200% 200%;animation:orbflow 7s ease-in-out infinite}
+  @keyframes orbflow{0%{background-position:0% 50%}25%{background-position:100% 0%}50%{background-position:100% 100%}75%{background-position:0% 100%}100%{background-position:0% 50%}}
+  .agent:nth-of-type(2) .orb{animation-delay:-1.4s}
+  .agent:nth-of-type(3) .orb{animation-delay:-2.8s}
+  .agent:nth-of-type(4) .orb{animation-delay:-4.2s}
+  .agent:nth-of-type(5) .orb{animation-delay:-1s}
+  @media(prefers-reduced-motion:reduce){.orb{animation:none}}
+  .agent .nm{font-family:var(--disp);font-weight:700;font-size:1.2rem;line-height:1}
+  .agent .role{color:var(--muted);font-size:.82rem;letter-spacing:.04em}
+  .agent .desc{color:#241c33;font-size:.93rem;flex:1}
+  .agent .ft{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap}
+  .tier{font-size:.74rem;color:var(--muted);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<header class="hero hero--band">
+  <canvas data-gradient aria-hidden="true"></canvas>
+  <nav class="nav"><div class="wrap">
+    <div class="mark"><a href="index.html">THE COLLECTIVE MIND</a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="offers.html">Offers</a><a href="mailto:info@thecollectivemind.me" class="btn btn--lghost cta">Let's talk</a></div>
+  </div></nav>
+  <div class="wrap">
+    <p class="eyebrow" style="color:rgba(255,255,255,.85)">Meet the team</p>
+    <h1>Humans for taste. <span class="b">AI for speed.</span></h1>
+    <p class="lede">A small senior team brings the taste and the craft. A roster of AI agents brings the speed and the scale. You stay in control, and you own everything we make.</p>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section>
+  <div class="wrap intro rv">
+    <div>
+      <p class="eyebrow">How the team works</p>
+      <h2>Senior humans lead. Agents amplify.</h2>
+    </div>
+    <p>The people set the direction and hold the quality. The agents handle the volume, trained on your brand and watched by a human. Together they are the in-house team a lean brand could never afford to staff full-time.</p>
+  </div>
+</section>
+
+<!-- THE HUMANS -->
+<section style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="grp rv">The humans <em>taste &amp; craft</em></div>
+    <div class="humans rv">
+      <div class="human"><div class="av">H</div><div class="nm">Hiba</div><div class="role">Founder &amp; Creative Director</div><div class="note">Strategy, brand, and everything we do that isn't covered below.</div></div>
+      <div class="human"><div class="av">R</div><div class="nm">Rita</div><div class="role">Designer</div><div class="note">Brand and visual design across the work.</div></div>
+      <div class="human"><div class="av">A</div><div class="nm">Abbas</div><div class="role">Animator</div><div class="note">Motion, film and everything that moves.</div></div>
+      <div class="human"><div class="av">M</div><div class="nm">Mustafa</div><div class="role">Developer</div><div class="note">Web, app and code-related content.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- THE AGENTS -->
+<section style="background:#fff;padding-top:0">
+  <div class="wrap">
+    <div class="grp rv">The AI agents <em>speed &amp; scale</em></div>
+    <div class="roster rv" id="roster"></div>
+    <p class="vat" style="color:var(--muted);font-size:.82rem;margin-top:1.2rem">Each agent works at a director level on its discipline, trained on your brand and overseen by the human team. Subscribe to the ones you need, or run the full team.</p>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap rv">
+    <p class="eyebrow" style="color:var(--mint)">Build your team</p>
+    <h2>A few people. The output of many.</h2>
+    <div class="cta-row"><a href="mailto:info@thecollectivemind.me" class="btn btn--light">Let's talk</a><a href="offers.html" class="btn btn--lghost">Find your fit</a></div>
+    <div class="foot"><div>© 2026 The Collective Mind FZE · Sharjah, UAE</div><div class="socials"><a href="index.html">Home</a><a href="offers.html">Offers</a></div></div>
+  </div>
+</section>
+
+<script src="gradient.js"></script>
+<script>
+const AGENTS=[
+  {nm:'Lina',p:'Content & Social',x:'Plans, creates and runs your social: content calendar, posting, captions and community, on brand and on schedule.'},
+  {nm:'Omar',p:'Paid Media',x:'Builds, runs and optimises paid campaigns across social, and tracks what happens: spend, reach and results.'},
+  {nm:'Sara',p:'SEO',x:'Technical and content SEO so you rank and get found on Google for the searches that matter.'},
+  {nm:'Yousef',p:'AI Visibility · GEO/AEO',x:'The new one: refines your brand so it surfaces inside AI answers (ChatGPT, Gemini, Perplexity), not just Google.'},
+  {nm:'Maya',p:'Social Designer',x:'Designs your posts, stories and ad creative at volume, in one consistent visual language.'}
+];
+document.getElementById('roster').innerHTML=AGENTS.map(function(a){
+  return '<div class="agent"><div class="top"><div class="orb">'+a.nm[0]+'</div><div><div class="nm">'+a.nm+'</div><div class="role">'+a.p+'</div></div></div>'+
+  '<div class="desc">'+a.x+'</div><div class="ft"><span class="tier">Director level</span></div></div>';
+}).join('');
+</script>
+</body>
+</html>
