@@ -60,9 +60,11 @@
   .result .agents span{font-size:.8rem;padding:.3rem .7rem;border-radius:100px;background:var(--paper);font-weight:600}
   .result .side{background:var(--ink);color:#fff;border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;gap:.7rem;justify-content:center}
   .result .side .so{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint)}
-  .pkgs{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-top:1.5rem}
-  @media(max-width:900px){.pkgs{grid-template-columns:1fr}}
-  .pkg{border:1px solid var(--line);border-radius:20px;padding:1.8rem;background:#fff;display:flex;flex-direction:column}
+  .pkgs{display:flex;gap:1.1rem;margin-top:1.5rem;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 1.3rem;scrollbar-width:thin;scrollbar-color:var(--violet) transparent}
+  .pkgs::-webkit-scrollbar{height:7px}
+  .pkgs::-webkit-scrollbar-thumb{background:var(--violet);border-radius:100px}
+  .pkgs::-webkit-scrollbar-track{background:transparent}
+  .pkg{flex:0 0 clamp(258px,78vw,300px);scroll-snap-align:start;border:1px solid var(--line);border-radius:20px;padding:1.8rem;background:#fff;display:flex;flex-direction:column}
   .pkg.feat{background:var(--ink);color:#fff;border-color:transparent}
   .pkg .name{font-family:var(--disp);font-weight:800;font-size:1.6rem}
   .pkg .for{color:var(--muted);font-size:.9rem;margin:.2rem 0 1rem}.pkg.feat .for{color:rgba(255,255,255,.7)}
@@ -70,8 +72,7 @@
   .pkg ul{list-style:none;display:grid;gap:.4rem;margin-bottom:1.3rem;flex:1}
   .pkg li{font-size:.92rem;padding-left:1.3rem;position:relative}.pkg li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:700}.pkg.feat li::before{color:var(--mint)}
   .vat{color:var(--muted);font-size:.82rem;margin-top:1rem}
-  .pkgs.four{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
-  @media(max-width:600px){.pkgs.four{grid-template-columns:1fr}}
+  .pkgs-hint{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:.6rem}
   .agencies{margin-top:1.1rem;border:1px dashed var(--line);border-radius:16px;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
   .agencies h4{font-family:var(--disp);font-size:1.2rem}
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}@media(max-width:760px){.steps{grid-template-columns:1fr 1fr}}
@@ -84,7 +85,7 @@
   <canvas data-gradient aria-hidden="true"></canvas>
   <nav class="nav"><div class="wrap">
     <div class="mark"><a href="index.html">THE COLLECTIVE MIND</a></div>
-    <div class="nav-links"><a href="index.html">Home</a><a href="agents.html">Team</a><a href="mailto:info@thecollectivemind.me" class="btn btn--lghost cta">Let's talk</a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="agents.html">Team</a><a href="contact.html?topic=general" class="btn btn--lghost cta">Let's talk</a></div>
   </div></nav>
   <div class="wrap">
     <p class="eyebrow" style="color:rgba(255,255,255,.85)">Offers &amp; packages</p>
@@ -137,7 +138,7 @@
           <div class="so">Your next step</div>
           <div style="font-family:var(--disp);font-size:1.2rem;font-weight:700">A 20-minute diagnostic call</div>
           <p style="color:rgba(255,255,255,.8);font-size:.92rem">A senior partner confirms scope and a fixed range. No sales bot.</p>
-          <a href="mailto:info@thecollectivemind.me" class="btn btn--light" style="align-self:flex-start">Let's talk</a>
+          <a href="contact.html?topic=general" class="btn btn--light" style="align-self:flex-start">Let's talk</a>
         </div>
       </div>
     </div>
@@ -244,22 +245,23 @@
       <p class="eyebrow">Managed packages</p>
       <h2>Pick a service, <span class="grad-text">we run it.</span></h2>
       <p>Clear, productised retainers. Senior creatives for the taste, AI agents for the speed. Subscribe to the agent packs, or have us run the whole thing for you.</p>
+      <p class="pkgs-hint">Scroll for more →</p>
     </div>
     <div class="pkgs four rv">
       <div class="pkg">
         <div class="name">Social Media</div><div class="for">Always-on social, managed for you</div>
         <ul><li>Strategy &amp; content calendar</li><li>Content &amp; design (EN/AR)</li><li>Scheduling &amp; posting</li><li>Community management</li><li>Monthly reporting</li></ul>
-        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+        <a href="contact.html?topic=social" class="btn btn--solid">Start</a>
       </div>
       <div class="pkg">
         <div class="name">SEO &amp; AI Visibility</div><div class="for">Found on Google and in AI answers</div>
         <ul><li>Technical &amp; content SEO</li><li>Keyword &amp; content plan</li><li>GEO/AEO for AI search</li><li>Monthly rankings report</li></ul>
-        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+        <a href="contact.html?topic=seo" class="btn btn--solid">Start</a>
       </div>
       <div class="pkg">
         <div class="name">Paid Media</div><div class="for">Ad management &amp; running</div>
         <ul><li>Ad creative &amp; copy</li><li>Campaign setup &amp; running</li><li>Audience &amp; budget management</li><li>Performance tracking &amp; reporting</li></ul>
-        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+        <a href="contact.html?topic=paid" class="btn btn--solid">Start</a>
       </div>
       <div class="pkg feat">
         <div class="name">AI Agent Pack</div><div class="for">Subscription to the AI agents</div>
@@ -269,7 +271,7 @@
       <div class="pkg">
         <div class="name">Growth Platform</div><div class="for">Your marketing operations, run for you</div>
         <ul><li>CRM &amp; unified customer profiles</li><li>Campaigns &amp; paid-spend control</li><li>Social inbox, listening &amp; approvals</li><li>Email / WhatsApp / SMS automation</li><li>Tracking, attribution &amp; reporting</li></ul>
-        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+        <a href="contact.html?topic=growth" class="btn btn--solid">Start</a>
       </div>
     </div>
     <p class="vat">Managed packages run monthly. Paid Media is plus ad spend. The AI Agent Pack is a subscription. Final scope set after a short call.</p>
@@ -302,19 +304,19 @@
         <div class="name">Ignite</div><div class="for">Startups launching their first real brand</div>
         <div class="price">From AED 15K one-off · or AED 9K/mo</div>
         <ul><li>Brand identity sprint</li><li>Positioning &amp; messaging</li><li>Starter website</li><li>Beacon AI-readiness check</li><li>One starter brand-agent, handed over</li></ul>
-        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Start</a>
+        <a href="contact.html?topic=ignite" class="btn btn--solid">Start</a>
       </div>
       <div class="pkg feat">
         <div class="name">Studio</div><div class="for">Small &amp; growing brands that need output without hiring</div>
         <div class="price">From AED 18K/mo</div>
         <ul><li>Senior creative on tap (1–2 slots)</li><li>Content calendar &amp; content (EN/AR)</li><li>Brand-agent suite built into your team</li><li>AI photography &amp; video</li><li>GEO/AEO + performance dashboard</li></ul>
-        <a href="mailto:info@thecollectivemind.me" class="btn btn--light">Start</a>
+        <a href="contact.html?topic=studio" class="btn btn--light">Start</a>
       </div>
       <div class="pkg">
         <div class="name">Embed</div><div class="for">Enterprises &amp; institutions running brand at scale</div>
         <div class="price">Custom · from AED 50K/mo</div>
         <ul><li>Fully embedded senior pod</li><li>AI production at scale</li><li>Custom agent suite, full handover</li><li>Brand governance &amp; training</li><li>Quarterly tune-ups &amp; reporting</li></ul>
-        <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Talk to us</a>
+        <a href="contact.html?topic=embed" class="btn btn--solid">Talk to us</a>
       </div>
     </div>
     <p class="vat">Ranges shown ex. VAT. Fully bilingual EN/AR delivery included. Final scope set after a short diagnostic call.</p>
@@ -323,7 +325,7 @@
         <h4>For agencies</h4>
         <p style="color:var(--muted);font-size:.94rem;max-width:52ch">Add senior craft and custom agent builds to your team. Unbranded, your client, your margin. A quiet partner track, let's talk.</p>
       </div>
-      <a href="mailto:info@thecollectivemind.me" class="btn btn--solid">Become a partner</a>
+      <a href="contact.html?topic=partner" class="btn btn--solid">Become a partner</a>
     </div>
   </div>
 </section>
@@ -332,7 +334,7 @@
   <div class="wrap rv">
     <p class="eyebrow" style="color:var(--mint)">Ready when you are</p>
     <h2>Let's find your fit.</h2>
-    <div class="cta-row"><a href="mailto:info@thecollectivemind.me" class="btn btn--light">Let's talk</a><a href="agents.html" class="btn btn--lghost">Meet the team</a></div>
+    <div class="cta-row"><a href="contact.html?topic=general" class="btn btn--light">Let's talk</a><a href="agents.html" class="btn btn--lghost">Meet the team</a></div>
     <div class="foot"><div>© 2026 The Collective Mind FZE · Sharjah, UAE</div><div class="socials"><a href="index.html">Home</a><a href="agents.html">Team</a></div></div>
   </div>
 </section>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Let's talk — The Collective Mind</title>
+<meta name="description" content="Tell us where your brand is. A senior partner replies, not a sales bot." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .cwrap{max-width:680px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3rem)}
+  .ctitle{font-family:var(--disp);font-weight:800;font-size:clamp(2.2rem,6vw,3.6rem);line-height:1.02;letter-spacing:-.02em;margin:.3rem 0 .6rem}
+  .csub{color:var(--muted);font-size:1.1rem;margin-bottom:2.2rem;max-width:46ch}
+  .cform{display:grid;gap:1.1rem;background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(1.4rem,3vw,2.2rem);box-shadow:0 24px 70px rgba(14,10,24,.10)}
+  .cfield{display:grid;gap:.45rem}
+  .cfield label{font-size:.82rem;font-weight:600;letter-spacing:.04em;color:var(--ink)}
+  .cfield input,.cfield textarea{font-family:var(--body);font-size:1rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;width:100%}
+  .cfield textarea{min-height:128px;resize:vertical;line-height:1.5}
+  .cfield input:focus,.cfield textarea:focus{outline:none;border-color:var(--violet);box-shadow:0 0 0 3px rgba(177,154,254,.25)}
+  .cform .btn{justify-content:center;width:100%;margin-top:.3rem;font-size:1rem;padding:1rem}
+  .cnote{font-size:.82rem;color:var(--muted);text-align:center}
+  .cok{display:none;text-align:center;padding:2.5rem 1rem}
+  .cok.show{display:block}
+  .cok h3{font-family:var(--disp);font-weight:800;font-size:1.8rem;margin-bottom:.5rem}
+  .cok p{color:var(--muted)}
+  .cerr{color:#c0392b;font-size:.88rem;text-align:center;display:none}
+  .cerr.show{display:block}
+</style>
+</head>
+<body>
+
+<header class="hero hero--band" style="min-height:auto;padding:6.5rem 0 3rem">
+  <canvas data-gradient aria-hidden="true"></canvas>
+  <nav class="nav"><div class="wrap">
+    <div class="mark"><a href="index.html">THE COLLECTIVE MIND</a></div>
+    <div class="nav-links"><a href="index.html">Home</a><a href="offers.html">Offers</a><a href="agents.html">Team</a></div>
+  </div></nav>
+  <div class="cwrap">
+    <p class="eyebrow" style="color:rgba(255,255,255,.9)">Let's talk</p>
+    <h1 class="ctitle" id="cTitle" style="color:#fff">Let's talk.</h1>
+    <p class="csub" id="cSub" style="color:rgba(255,255,255,.85)">Tell us where your brand is. A senior partner replies, not a sales bot.</p>
+  </div>
+</header>
+
+<section style="padding-top:0">
+  <div class="cwrap" style="margin-top:-1.5rem">
+    <form class="cform" id="cform">
+      <div class="cfield"><label for="cname">Your name</label><input id="cname" name="name" placeholder="Your name" autocomplete="name"></div>
+      <div class="cfield"><label for="cemail">Your email</label><input id="cemail" type="email" name="email" required placeholder="you@brand.com" autocomplete="email"></div>
+      <div class="cfield"><label for="msg">Message</label><textarea id="msg" name="message"></textarea></div>
+      <button class="btn btn--solid" type="submit" id="cbtn">Send</button>
+      <p class="cnote">A senior partner replies, usually within a day.</p>
+      <p class="cerr" id="cerr">Something went wrong. Please email h.hassan@thecollectivemind.me directly.</p>
+    </form>
+    <div class="cok" id="cok">
+      <h3>Thanks — message sent.</h3>
+      <p>A senior partner will get back to you soon. <a href="index.html" style="color:var(--violet-deep,#6b46c1);font-weight:600">Back to home →</a></p>
+    </div>
+  </div>
+</section>
+
+<script src="gradient.js"></script>
+<script>
+(function(){
+  var T={
+    general:{h:"Let's talk.",m:"Tell us where your brand is and what you need."},
+    social:{h:"Social Media.",m:"I'm interested in your Social Media management package."},
+    seo:{h:"SEO & AI Visibility.",m:"I'm interested in SEO & AI Visibility — getting found on Google and in AI answers."},
+    paid:{h:"Paid Media.",m:"I'm interested in Paid Media — ad management, running and tracking."},
+    growth:{h:"Growth Platform.",m:"I'm interested in the Growth Platform (CRM, automation, social inbox, attribution)."},
+    aiagents:{h:"AI Agent Pack.",m:"I'd like to subscribe to the AI Agent Pack."},
+    team:{h:"Build your team.",m:"I'd like to build a team with The Collective Mind."},
+    ignite:{h:"Ignite.",m:"I'm interested in the Ignite package."},
+    studio:{h:"Studio.",m:"I'm interested in the Studio package."},
+    embed:{h:"Embed.",m:"I'm interested in the Embed package."},
+    partner:{h:"Partner with us.",m:"We're an agency interested in the partner track."}
+  };
+  var topic=(new URLSearchParams(location.search).get('topic')||'general').toLowerCase();
+  var t=T[topic]||T.general;
+  document.getElementById('cTitle').textContent=t.h;
+  document.getElementById('msg').value=t.m;
+
+  var form=document.getElementById('cform'),btn=document.getElementById('cbtn'),err=document.getElementById('cerr');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    err.classList.remove('show'); btn.disabled=true; btn.textContent='Sending…';
+    var data={
+      email:document.getElementById('cemail').value,
+      name:document.getElementById('cname').value,
+      message:document.getElementById('msg').value,
+      _subject:'New enquiry · '+t.h+' (website)',
+      _template:'table'
+    };
+    fetch('https://formsubmit.co/ajax/h.hassan@thecollectivemind.me',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(data)
+    }).then(function(r){return r.json();}).then(function(){
+      form.style.display='none'; document.getElementById('cok').classList.add('show');
+    }).catch(function(){
+      btn.disabled=false; btn.textContent='Send'; err.classList.add('show');
+    });
+  });
+})();
+</script>
+</body>
+</html>
